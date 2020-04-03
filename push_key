@@ -1,0 +1,9 @@
+# Push SSH pub key to remote servers
+
+def push_key():
+
+    keyfile = '/tmp/%s.pub' % env.user
+    run('mkdir -p ~/.ssh && chmod 700 ~/.ssh')
+    put('~/.ssh/id_rsa.pub', keyfile)
+    run('cat %s >> ~/.ssh/authorized_keys' % keyfile)
+    run('rm %s' % keyfile)
